@@ -1,4 +1,4 @@
 LetterGetter
 ============
 
-Scrabble helper for noobszor
+Scrabble helper for noobs.
