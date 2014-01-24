@@ -15,14 +15,17 @@ public class FileFactory {
 		this.assets = assets;
 	}
 	
-	public List<String> readFromAssets(String filename){
+	public List<String> readFromAssets(String filename, String regex){
 		List<String> list = new ArrayList<String>();
 		
 		try{
 			BufferedReader br = new BufferedReader(new InputStreamReader(assets.open(filename)));
 			String in = br.readLine();
 			while(in != null){
-				list.add(in);
+				if(in.matches(regex)){					
+					list.add(in);
+				}
+				
 				in = br.readLine();
 			}
 		}catch(IOException e){

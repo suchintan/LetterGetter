@@ -32,14 +32,12 @@ public class FindWords {
 	public List<Word> query(String query){
 		List<Word> words = new ArrayList<Word>();
 		
-		List<String> allWords = factory.readFromAssets(query);
-		
 		String regex = buildRegex(query);
+		List<String> allWords = factory.readFromAssets(wordsFileName, regex);
+		
 		
 		for(String s : allWords){
-			if(s.matches(regex)){
-				words.add(new Word(s, ""));
-			}
+			words.add(new Word(s, ""));
 		}
 		
 		return words;
