@@ -1,13 +1,8 @@
 package com.awesome.lettergetter;
 
-import java.util.List;
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.app.Activity;
 import android.view.Menu;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class LetterGetterActivity extends Activity {
 
@@ -25,11 +20,4 @@ public class LetterGetterActivity extends Activity {
         return true;
     }
     
-    public void search(View v){
-    	EditText editText = (EditText)findViewById(R.id.edit);
-    	List<Word> words = new FindWords(this).query(editText.getText().toString());
-    	
-    	TextView tv = (TextView)findViewById(R.id.text);
-    	tv.setText(words.get(0).getWord() + " " + words.get(0).getPoints());
-    }
 }
