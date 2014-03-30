@@ -19,7 +19,7 @@ public class LetterGetterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letter_getter);
         
-        populateButtons(1,5);
+        populateButtons(1,11);
     }
 
 
@@ -46,7 +46,13 @@ public class LetterGetterActivity extends Activity {
 			
 			for (int col = 0; col < numCols; col++){
 				Button button = new Button(this);
+				//Make Button stretch to fit table
+				button.setLayoutParams(new TableRow.LayoutParams(
+						TableRow.LayoutParams.MATCH_PARENT,
+						TableRow.LayoutParams.MATCH_PARENT,
+						1.0f));
 				tableRow.addView(button);
+				button.setMinimumWidth(0);
 			}
 		}
 	}
