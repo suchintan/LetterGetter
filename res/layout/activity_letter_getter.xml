@@ -12,24 +12,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-	    <EditText
-	        android:id="@+id/edit"
-	        android:layout_weight="1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="search"/>
-	    
-	    <Button 
-	        android:id="@+id/search"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Search"
-	        android:onClick="search"/>
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="search" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="search"
+            android:text="Search" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="poop" />
+
+    <TableLayout
+        android:id="@+id/tableForButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight="0.54"
+        android:stretchColumns="*" >
+    </TableLayout>
+
 </LinearLayout>
