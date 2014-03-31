@@ -7,7 +7,7 @@ public class User {
 	private int points;
 	private int score;
 	Tray tray;
-	IncompleteWord word;
+	IncompleteWord incompleteWord;
 	private int rank;	
 	
 	public User(String username){
@@ -18,7 +18,7 @@ public class User {
 		this.setName(username);
 		this.setPoints(points);
 		this.tray = tray;
-		this.word = word;
+		this.incompleteWord = word;
 		this.setRank(rank);
 	}
 	

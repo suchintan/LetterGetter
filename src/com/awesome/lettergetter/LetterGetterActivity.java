@@ -15,11 +15,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class LetterGetterActivity extends MenuActivity {
-	 @Override
-	    protected void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.activity_letter_getter);
-	        populateButtons(1,10);
+	
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_letter_getter);
+        //Call incomplete word and get length
+        populateButtons(1, gameState.getWord().length());
     }
     
     public void search(View v){
@@ -43,6 +45,10 @@ public class LetterGetterActivity extends MenuActivity {
 						TableRow.LayoutParams.MATCH_PARENT,
 						TableRow.LayoutParams.MATCH_PARENT,
 						1.0f));
+				//Set the padding
+				button.setPadding(0, 0, 0, 0);
+				//Gets the letters of the word and prints in button text property
+				button.setText(Character.toString(gameState.getWord().charAt(col)));
 				tableRow.addView(button);
 				button.setMinimumWidth(0);
 			}

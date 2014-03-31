@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MenuActivity extends Activity {
+	public static GameState gameState = new GameState();
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
