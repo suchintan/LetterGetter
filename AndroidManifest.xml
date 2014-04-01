@@ -31,6 +31,13 @@
             android:name="com.awesome.lettergetter.LeaderboardActivity"
             android:label="@string/title_activity_leaderboard" >
         </activity>
+        
+         <activity
+            android:name="com.awesome.lettergetter.TrayActivity"
+            android:label="@string/title_tray_activity" >
+        </activity>
+        
+
     </application>
 
 </manifest>
