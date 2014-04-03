@@ -2,6 +2,7 @@ package com.awesome.lettergetter;
 
 import com.awesome.lettergetter.enums.DIFFICULTY;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,21 +13,54 @@ import android.widget.TableRow;
 public class LetterGetterActivity extends MenuActivity {
 	private Button easyBtn, mediumBtn, hardBtn;
 	
+	boolean flag = false;
+	
+	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_letter_getter);
+
+    
+        flag = true;
         
-        if(gameState.hasCompletedWord()){
-	        //Checks if word is completed then prompts user
-	        //to select difficult for next word
-        	getNextWord();
-        }
-        else{
-	        //Call incomplete word and get length
-        	populateLetters(1, gameState.getCurrentWord().length());
-        }
-    }
+	}
+	
+	@Override
+	
+	protected void onResume(){
+		super.onResume();
+		
+		if (flag == true){
+					
+	        setContentView(R.layout.activity_letter_getter);
+	        
+	        if(gameState.hasCompletedWord()){
+		        //Checks if word is completed then prompts user
+		        //to select difficult for next word
+	        	getNextWord();
+	        }
+	        else{
+		        //Call incomplete word and get length
+	        	populateLetters(1, gameState.getCurrentWord().length());
+	        }
+		
+		}
+		else{
+						
+			Intent intent = getIntent();
+			final int button_id = intent.getIntExtra("id", 0);
+			final String button_ans = intent.getExtras().getString("Ans");
+						
+			Button mButton = (Button) findViewById(R.id.tableForButtons);
+			mButton.setId(button_id);
+			mButton.setText(button_ans);
+						
+		}
+		
+	}
+	
+	
+	
     //Event handler for Easy Button
 	View.OnClickListener easyBtnHandler = new View.OnClickListener() {
 		public void onClick(View v) {
@@ -83,6 +117,11 @@ public class LetterGetterActivity extends MenuActivity {
 				
 				//Adds the button to the table
 				tableRow.addView(button);
+				
+			
+				
+				button.setOnClickListener(getOnClick(button));
+				
 			}
 		}
 		//Make difficulty buttons invisible
@@ -94,4 +133,25 @@ public class LetterGetterActivity extends MenuActivity {
 		LinearLayout difficultyBtns = (LinearLayout) findViewById(R.id.difficulty);
 		difficultyBtns.setVisibility(View.INVISIBLE);
     }
+    
+    View.OnClickListener getOnClick(final Button button){
+    	return new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				
+				
+				//startActivity(new Intent(LetterGetterActivity.this, TrayActivity.class));
+				
+				Intent i = new Intent(LetterGetterActivity.this, TrayActivity.class);
+				i.putExtra("id",  button.getId());
+				startActivity(i);
+				
+			}
+    		    		
+    		
+    	};
+    	
+    	
+    };
 }
