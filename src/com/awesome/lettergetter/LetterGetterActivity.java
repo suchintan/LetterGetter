@@ -23,6 +23,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class LetterGetterActivity extends MenuActivity {
 	private Button easyBtn, mediumBtn, hardBtn;
+	
+	int btnId; 
 		
 	GameState state = GameState.getInstance(this);
 	
@@ -118,22 +120,13 @@ public class LetterGetterActivity extends MenuActivity {
     	   setContentView(R.layout.activity_letter_getter);
     	   setDifficultyBtnsVisible(false);
     	   populateLetters(1, gameState.getCurrentWord().length());
-   
-    	   
-  //////////////////////////////// This would set the textbox as answer  	   
-    	   
-    	 
-    	   Button mButton = (Button) findViewById(R.id.tableForButtons);
-    	   mButton.setId(gameState.getWordRef());
-    	   mButton.setText(gameState.getWordAns());
-    	   
     	
        	 
        		}    
         
         
         
-        
+    
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 				int position, long id) {
@@ -148,11 +141,17 @@ public class LetterGetterActivity extends MenuActivity {
 //				intent.putExtra("id", button_id);
 				//startActivity(intent);
 				
+							
 				GameState.setWordAns("a");
 				//TableLayout mtable = (TableLayout) findViewById(R.id.tableForButtons);
-				Button mButton = new Button(getBaseContext());
-				mButton.setId(gameState.getWordRef());
-		    	mButton.setText("A");
+				Button mButton = (Button) findViewById(getBtnId());
+				//mButton.setId(gameState.getWordRef());
+				//mButton.setId(2);
+				
+		
+		    	
+				int i = position + 65;
+				mButton.setText(Character.toString((char)i));
 				
 		   
 				trayLayout.setVisibility(View.GONE);
@@ -166,14 +165,7 @@ public class LetterGetterActivity extends MenuActivity {
 	@Override
     protected void onResume(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
- 	   Button mButton = (Button) findViewById(R.id.tableForButtons);
- 	   mButton.setId(gameState.getWordRef());
- 	   mButton.setText(gameState.getWordAns());
-        
-
-        
-        
+          
 	}
 	
     //Event handler for Easy Button
@@ -216,7 +208,10 @@ public class LetterGetterActivity extends MenuActivity {
     
     private void populateLetters(int numRows, int numCols) {
     	TableLayout table = (TableLayout) findViewById(R.id.tableForButtons);
-		for (int row = 0; row < numRows; row++) {
+		
+    	
+    	
+    	for (int row = 0; row < numRows; row++) {
 			TableRow tableRow = new TableRow(this);
 			table.addView(tableRow);
 			
@@ -229,6 +224,9 @@ public class LetterGetterActivity extends MenuActivity {
 						1.0f));
 				//Set the id of each button
 				button.setId(col);
+				//
+				
+				button.setTag(col);
 				//Set the padding
 				button.setPadding(0, 0, 0, 0);
 				
@@ -246,9 +244,13 @@ public class LetterGetterActivity extends MenuActivity {
 				button.setOnClickListener(getOnClick(button));
 				
 			}
+			
 		}
 		//Make difficulty buttons invisible
 		//setDifficultyBtnsInvisible();
+    	
+//    	Button btn = (Button) findViewById(btID);
+//    	btn.setText("A");
 	}
     
     private void setDifficultyBtnsVisible(Boolean bool){
@@ -272,6 +274,9 @@ public class LetterGetterActivity extends MenuActivity {
 			public void onClick(View v) {
 				
 				GameState.setWordRef(button.getId());
+				int btID =  button.getId() ;//getApplicationContext().getResources().getIdentifier("button" + 3,  "id", getPackageName());
+				setBtnId (btID);
+				
 				dispTray(true);
 				
 				//startActivity(new Intent(LetterGetterActivity.this, TrayActivity.class));
@@ -305,4 +310,17 @@ else{
     	
     		
     }
+    
+  protected void setBtnId(int i){
+	  
+	  this.btnId = i;
+	  
+	  
+  }
+  
+  protected int getBtnId(){
+	  
+	  return this.btnId;
+	  
+  }
 }

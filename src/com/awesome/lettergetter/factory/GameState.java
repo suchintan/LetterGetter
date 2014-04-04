@@ -41,7 +41,7 @@ public class GameState {
 	
 	//Gets the current word needed to be completed
 	public String getCurrentWord(){
-		return "system design";		
+		return "System design";		
 	}
 	
 	//Gets the new word to be completed
