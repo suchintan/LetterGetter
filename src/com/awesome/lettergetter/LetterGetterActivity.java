@@ -127,7 +127,7 @@ public class LetterGetterActivity extends MenuActivity {
 				
 				for (int c = 0; c < words.size(); c++) {
 					String[] word = words.get(c);
-					if(definitions.containsKey(word[0].toUpperCase())){
+					if(definitions.containsKey(word[0])){
 						trie.addWord(word[0].toLowerCase(), definitions.get(word[0]), Integer.parseInt(word[1]));
 					}
 				}
