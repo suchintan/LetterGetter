@@ -1,6 +1,7 @@
 package com.awesome.lettergetter;
 
 import com.awesome.lettergetter.enums.DIFFICULTY;
+import com.awesome.lettergetter.factory.GameState;
 
 import android.content.Intent;
 import android.os.Bundle;
