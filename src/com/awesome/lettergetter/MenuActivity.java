@@ -1,5 +1,7 @@
 package com.awesome.lettergetter;
 
+import com.awesome.lettergetter.factory.GameState;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MenuActivity extends Activity {
-	public static GameState gameState = new GameState();
+	public GameState gameState = GameState.getInstance(this);
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

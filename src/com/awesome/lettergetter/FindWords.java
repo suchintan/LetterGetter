@@ -3,6 +3,9 @@ package com.awesome.lettergetter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.awesome.lettergetter.dto.Word;
+import com.awesome.lettergetter.factory.FileFactory;
+
 import android.content.Context;
 
 public class FindWords {

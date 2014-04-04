@@ -1,13 +1,13 @@
 package com.awesome.lettergetter;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.awesome.lettergetter.enums.LETTER;
 
 public class ShopActivity extends MenuActivity {
 
@@ -20,16 +20,16 @@ public class ShopActivity extends MenuActivity {
 	}
 	
 	private void populateShopView(){
-		ArrayAdapter<LetterItem> adapter = new ShopAdapter();
+		ArrayAdapter<LETTER> adapter = new ShopAdapter();
 		ListView list = (ListView) findViewById(R.id.shop_listview);
 		
 		list.setAdapter(adapter);
 	}
 	
-	private class ShopAdapter extends ArrayAdapter<LetterItem>{
+	private class ShopAdapter extends ArrayAdapter<LETTER>{
 
 		public ShopAdapter() {
-			super(ShopActivity.this, R.layout.shop_view, gameState.getShopData());
+			super(ShopActivity.this, R.layout.shop_view, LETTER.values());
 		}
 
 		@Override
@@ -39,16 +39,16 @@ public class ShopActivity extends MenuActivity {
 				shopeItemView = getLayoutInflater().inflate(R.layout.shop_view, parent, false);
 			}
 			//Find the leader
-			LetterItem currentLetter = gameState.getShopData().get(position);
+			LETTER currentLetter = LETTER.values()[position];
 			
 			//Fill the view
 			//Letter:
 			TextView letterText = (TextView) shopeItemView.findViewById(R.id.shop_letter);
-			letterText.setText(currentLetter.getLetter());
+			letterText.setText(currentLetter.name());
 			
 			//Cost:
 			TextView costText = (TextView) shopeItemView.findViewById(R.id.shop_cost);
-			costText.setText("Cost: " + Integer.toString(currentLetter.getCost()));
+			costText.setText("Cost: " + Integer.toString(currentLetter.getScore()));
 			
 			return shopeItemView;
 		}

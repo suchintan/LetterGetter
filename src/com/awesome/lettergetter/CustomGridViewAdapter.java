@@ -2,6 +2,8 @@ package com.awesome.lettergetter;
 
 import java.util.ArrayList;
 
+import com.awesome.lettergetter.dto.Item;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -12,20 +12,24 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
-import com.awesome.lettergetter.Letters;
-import com.awesome.lettergetter.GameState;
+
+import com.awesome.lettergetter.dto.Item;
+import com.awesome.lettergetter.enums.LETTER;
+import com.awesome.lettergetter.factory.GameState;
 
 
 public class TrayActivity extends Activity {
 	GridView gridView;
 	ArrayList<Item> gridArray = new ArrayList<Item>();
-	 CustomGridViewAdapter customGridAdapter;
+	CustomGridViewAdapter customGridAdapter;
+	GameState state;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tray);
 		
+		state = GameState.getInstance(this);
 		
 		Intent intent = getIntent();
 		final int button_id = intent.getIntExtra("id", 0);
@@ -60,32 +64,32 @@ public class TrayActivity extends Activity {
 		Bitmap zIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.z);
 
 		
-	gridArray.add(new Item(aIcon, GameState.LetterNum.A.getQuantity(), Letters.A.getScore()));
-	gridArray.add(new Item(bIcon, GameState.LetterNum.B.getQuantity(), Letters.B.getScore()));
-	gridArray.add(new Item(cIcon, GameState.LetterNum.C.getQuantity(), Letters.C.getScore()));
-	gridArray.add(new Item(dIcon, GameState.LetterNum.D.getQuantity(), Letters.D.getScore()));
-	gridArray.add(new Item(eIcon, GameState.LetterNum.E.getQuantity(), Letters.E.getScore()));
-	gridArray.add(new Item(fIcon, GameState.LetterNum.F.getQuantity(), Letters.F.getScore()));
-	gridArray.add(new Item(gIcon, GameState.LetterNum.G.getQuantity(), Letters.G.getScore()));
-	gridArray.add(new Item(hIcon, GameState.LetterNum.H.getQuantity(), Letters.H.getScore()));
-	gridArray.add(new Item(iIcon, GameState.LetterNum.I.getQuantity(), Letters.I.getScore()));
-	gridArray.add(new Item(jIcon, GameState.LetterNum.J.getQuantity(), Letters.J.getScore()));
-	gridArray.add(new Item(kIcon, GameState.LetterNum.K.getQuantity(), Letters.K.getScore()));
-	gridArray.add(new Item(lIcon, GameState.LetterNum.L.getQuantity(), Letters.L.getScore()));
-	gridArray.add(new Item(mIcon, GameState.LetterNum.M.getQuantity(), Letters.M.getScore()));
-	gridArray.add(new Item(nIcon, GameState.LetterNum.N.getQuantity(), Letters.N.getScore()));
-	gridArray.add(new Item(oIcon, GameState.LetterNum.O.getQuantity(), Letters.O.getScore()));
-	gridArray.add(new Item(pIcon, GameState.LetterNum.P.getQuantity(), Letters.P.getScore()));
-	gridArray.add(new Item(qIcon, GameState.LetterNum.Q.getQuantity(), Letters.Q.getScore()));
-	gridArray.add(new Item(rIcon, GameState.LetterNum.R.getQuantity(), Letters.R.getScore()));
-	gridArray.add(new Item(sIcon, GameState.LetterNum.S.getQuantity(), Letters.S.getScore()));
-	gridArray.add(new Item(tIcon, GameState.LetterNum.T.getQuantity(), Letters.T.getScore()));
-	gridArray.add(new Item(uIcon, GameState.LetterNum.U.getQuantity(), Letters.U.getScore()));
-	gridArray.add(new Item(vIcon, GameState.LetterNum.V.getQuantity(), Letters.V.getScore()));
-	gridArray.add(new Item(wIcon, GameState.LetterNum.W.getQuantity(), Letters.W.getScore()));
-	gridArray.add(new Item(xIcon, GameState.LetterNum.X.getQuantity(), Letters.X.getScore()));
-	gridArray.add(new Item(yIcon, GameState.LetterNum.Y.getQuantity(), Letters.Y.getScore()));
-	gridArray.add(new Item(zIcon, GameState.LetterNum.Z.getQuantity(), Letters.Z.getScore()));
+		gridArray.add(new Item(aIcon, state.getLetterQuantityFromTray(LETTER.A), LETTER.A.getScore()));
+		gridArray.add(new Item(bIcon, state.getLetterQuantityFromTray(LETTER.B), LETTER.B.getScore()));
+		gridArray.add(new Item(cIcon, state.getLetterQuantityFromTray(LETTER.C), LETTER.C.getScore()));
+		gridArray.add(new Item(dIcon, state.getLetterQuantityFromTray(LETTER.D), LETTER.D.getScore()));
+		gridArray.add(new Item(eIcon, state.getLetterQuantityFromTray(LETTER.E), LETTER.E.getScore()));
+		gridArray.add(new Item(fIcon, state.getLetterQuantityFromTray(LETTER.F), LETTER.F.getScore()));
+		gridArray.add(new Item(gIcon, state.getLetterQuantityFromTray(LETTER.G), LETTER.G.getScore()));
+		gridArray.add(new Item(hIcon, state.getLetterQuantityFromTray(LETTER.H), LETTER.H.getScore()));
+		gridArray.add(new Item(iIcon, state.getLetterQuantityFromTray(LETTER.I), LETTER.I.getScore()));
+		gridArray.add(new Item(jIcon, state.getLetterQuantityFromTray(LETTER.J), LETTER.J.getScore()));
+		gridArray.add(new Item(kIcon, state.getLetterQuantityFromTray(LETTER.K), LETTER.K.getScore()));
+		gridArray.add(new Item(lIcon, state.getLetterQuantityFromTray(LETTER.L), LETTER.L.getScore()));
+		gridArray.add(new Item(mIcon, state.getLetterQuantityFromTray(LETTER.M), LETTER.M.getScore()));
+		gridArray.add(new Item(nIcon, state.getLetterQuantityFromTray(LETTER.N), LETTER.N.getScore()));
+		gridArray.add(new Item(oIcon, state.getLetterQuantityFromTray(LETTER.O), LETTER.O.getScore()));
+		gridArray.add(new Item(pIcon, state.getLetterQuantityFromTray(LETTER.P), LETTER.P.getScore()));
+		gridArray.add(new Item(qIcon, state.getLetterQuantityFromTray(LETTER.Q), LETTER.Q.getScore()));
+		gridArray.add(new Item(rIcon, state.getLetterQuantityFromTray(LETTER.R), LETTER.R.getScore()));
+		gridArray.add(new Item(sIcon, state.getLetterQuantityFromTray(LETTER.S), LETTER.S.getScore()));
+		gridArray.add(new Item(tIcon, state.getLetterQuantityFromTray(LETTER.T), LETTER.T.getScore()));
+		gridArray.add(new Item(uIcon, state.getLetterQuantityFromTray(LETTER.U), LETTER.U.getScore()));
+		gridArray.add(new Item(vIcon, state.getLetterQuantityFromTray(LETTER.V), LETTER.V.getScore()));
+		gridArray.add(new Item(wIcon, state.getLetterQuantityFromTray(LETTER.W), LETTER.W.getScore()));
+		gridArray.add(new Item(xIcon, state.getLetterQuantityFromTray(LETTER.X), LETTER.X.getScore()));
+		gridArray.add(new Item(yIcon, state.getLetterQuantityFromTray(LETTER.Y), LETTER.Y.getScore()));
+		gridArray.add(new Item(zIcon, state.getLetterQuantityFromTray(LETTER.Z), LETTER.Z.getScore()));
 
 	
 		

@@ -19,6 +19,8 @@
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:text="Easy" />
+
+									
 	
 	    <Button
 	        android:id="@+id/medium_btn"
@@ -32,7 +34,8 @@
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:text="Hard" />
+	        android:text="Hard"/>
+	    
 	</LinearLayout>
     <TableLayout
         android:id="@+id/tableForButtons"
