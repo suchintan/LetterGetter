@@ -47,7 +47,8 @@ public class GameState {
 	
 	//Gets the new word to be completed
 	public String getNextWord(DIFFICULTY d){
-		return "design";		
+		user.generateWord(d);
+		return user.getIncompleteWord().getWord();		
 	}
 	
 	//Checks if the user has completed the word

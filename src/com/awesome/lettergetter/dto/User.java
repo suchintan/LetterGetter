@@ -83,6 +83,9 @@ public class User implements Comparable<User>{
 	}
 
 	public IncompleteWord getIncompleteWord() {
+		if(incompleteWord == null){
+			generateWord(DIFFICULTY.EASY);
+		}
 		return incompleteWord;
 	}
 

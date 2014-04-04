@@ -42,19 +42,19 @@ public class IncompleteWordFactory {
 		List<String> words = new ArrayList<String>();
 		Map<String, String[]> map = Trie.getInstance().getWordsMap();
 		words.addAll(map.keySet());
-		
+		String originalWord;
 		String word;
 		do{
 			word = words.get((int)(Math.random() * words.size()));
 			
 		}while(DIFFICULTY.getDifficulty(word.length()) != difficulty);
-		
+		originalWord = word;
 		int numberOfBlanks = word.length() / 2;
 		for(int c = 0; c < numberOfBlanks; c++){
-			word = word.substring(c*2) + "-" + word.substring(c*2+1);
+			word = word.substring(0,c*2) + "-" + word.substring(c*2+1);
 		}
 		
-		return new IncompleteWord(word, map.get(word)[0], Integer.parseInt(map.get(word)[1]));
+		return new IncompleteWord(word, map.get(originalWord)[0], Integer.parseInt(map.get(originalWord)[1]));
 	}
 	
 	
