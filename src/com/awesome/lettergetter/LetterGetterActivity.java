@@ -6,6 +6,11 @@ import com.awesome.lettergetter.dto.Item;
 import com.awesome.lettergetter.enums.DIFFICULTY;
 import com.awesome.lettergetter.enums.LETTER;
 import com.awesome.lettergetter.factory.GameState;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +26,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.awesome.lettergetter.enums.DIFFICULTY;
+import com.awesome.lettergetter.factory.FileFactory;
+import com.awesome.lettergetter.factory.GameState;
+import com.awesome.lettergetter.trie.Trie;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
 public class LetterGetterActivity extends MenuActivity {
 	private Button easyBtn, mediumBtn, hardBtn;
 		
@@ -29,6 +42,8 @@ public class LetterGetterActivity extends MenuActivity {
 	ArrayList<Item> gridArray = new ArrayList<Item>();
 	CustomGridViewAdapter customGridAdapter;
 	GridView gridView;
+	
+	private Trie trie;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +123,26 @@ public class LetterGetterActivity extends MenuActivity {
 	/////////////////////////////////////////////////////////
 		
           
+        if (!Trie.exists()){
+        	trie = Trie.getInstance();
+    		try {
+    			List<String[]> words = new FileFactory(getAssets()).readFromAssets("truncated_words.txt", " ");
+    			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("dictionary.json")));
+    			String json = br.readLine();
+    			new Gson().fromJson(json, new TypeReference<HashMap<String, String>>(){}.getType());
+				Map<String, String> definitions = new ObjectMapper().readValue(getAssets().open("dictionary.json"), new TypeReference<HashMap<String, String>>(){});
+				
+				for (int c = 0; c < words.size(); c++) {
+					String[] word = words.get(c);
+					if(definitions.containsKey(word[0].toUpperCase())){
+						trie.addWord(word[0].toLowerCase(), definitions.get(word[0]), Integer.parseInt(word[1]));
+					}
+				}
+			} catch (Exception e){
+				
+			}
+
+        }
         if ((GameState.getHasStartedWord() == false) && (GameState.getHasCompletedWord()== false)){   
        	 
         	GameState.setHasStartedWord(true);

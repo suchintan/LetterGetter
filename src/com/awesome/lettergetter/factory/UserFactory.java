@@ -14,7 +14,7 @@ public class UserFactory {
 	}
 	
 	private UserFactory(){
-		activeUser = new User("poop");
+		activeUser = new User("Paddy O'furniture");
 	}
 	
 	public void setActiveUser(String username){

@@ -1,6 +1,6 @@
 package com.awesome.lettergetter.dto;
 
-import com.awesome.lettergetter.PointHelper;
+import com.awesome.lettergetter.factory.PointHelper;
 
 public class Word {
 	private String word;

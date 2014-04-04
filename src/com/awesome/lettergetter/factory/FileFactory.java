@@ -23,9 +23,9 @@ public class FileFactory {
 			String in;
 			while((in = br.readLine()) != null){
 				String[] s = in.split(" ");
-				if(s[0].matches(regex)){			
+//				if(s[0].matches(regex)){			
 					list.add(s);
-				}
+//				}
 				
 				in = br.readLine();
 			}
