@@ -21,30 +21,43 @@ public class LetterGetterActivity extends MenuActivity {
         
         setContentView(R.layout.activity_letter_getter);
           
-        if ((GameState.getHasStartedWord() && GameState.getHasCompletedWord() )== false){   
+        if ((GameState.getHasStartedWord() == false) && (GameState.getHasCompletedWord()== false)){   
        	 
+        	GameState.setHasStartedWord(true);
         	getNextWord();
        	 }
        else if((GameState.getHasStartedWord() == true) && (GameState.getHasCompletedWord() == false)){
        	 
+    	   setContentView(R.layout.activity_letter_getter);
     	   setDifficultyBtnsVisible(false);
     	   populateLetters(1, gameState.getCurrentWord().length());
+   
     	   
+  //////////////////////////////// This would set the textbox as answer  	   
     	   
-			Intent intent = getIntent();
-			final int button_id = intent.getIntExtra("id", 0);
-			final String button_ans = intent.getExtras().getString("Ans");
-						
-			Button mButton = (Button) findViewById(R.id.tableForButtons);
-			mButton.setId(button_id);
-			mButton.setText(button_ans);
-						
+    	   Button mButton = (Button) findViewById(R.id.tableForButtons);
+    	   mButton.setId(gameState.getWordRef());
+    	   mButton.setText(gameState.getWordAns());
+    	   
+    	
        	 
        		}    
 
  }
-       	
+	
+//// why doesn't it go to onresume	
+	@Override
+    protected void onResume(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+ 	   Button mButton = (Button) findViewById(R.id.tableForButtons);
+ 	   mButton.setId(gameState.getWordRef());
+ 	   mButton.setText(gameState.getWordAns());
+        
 
+        
+        
+	}
 	
     //Event handler for Easy Button
 	View.OnClickListener easyBtnHandler = new View.OnClickListener() {
@@ -73,8 +86,7 @@ public class LetterGetterActivity extends MenuActivity {
     
     public void getNextWord(){
         
-    	GameState.setHasStartedWord(true);
-    	
+      	
     	//Assign Button hooks and handlers
         easyBtn = (Button) findViewById(R.id.easy_btn);
         mediumBtn = (Button) findViewById(R.id.medium_btn);
@@ -146,9 +158,10 @@ public class LetterGetterActivity extends MenuActivity {
 				//startActivity(new Intent(LetterGetterActivity.this, TrayActivity.class));
 				
 				Intent i = new Intent(LetterGetterActivity.this, TrayActivity.class);
-				i.putExtra("id",  button.getId());
+//				i.putExtra("id",  button.getId());
+				GameState.setWordRef(button.getId());				
 				startActivity(i);
-				
+		
 			}
     		    		
     		

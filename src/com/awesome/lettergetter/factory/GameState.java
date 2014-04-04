@@ -14,6 +14,8 @@ public class GameState {
 	
 	static Boolean hasCompletedWord = false;
 	static Boolean hasStartedWord = false;
+	static int buttonRef;
+	static String ans = "a"; 
 	
 	private static GameState state;
 	private Context context;
@@ -96,5 +98,37 @@ public class GameState {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+	public static void setWordRef(int i){
+	
+		buttonRef = i;
+			
+	}
+	
+
+	public int getWordRef(){
+		
+		return buttonRef;
+	}
+	
+	
+	public static void setWordAns(String a){
+		
+	    ans = a;
+			
+	}
+	
+	public String getWordAns(){
+		
+		return ans;
+	}
+	
+//	public void ansWord(int i, char a){
+//		
+//		
+//		
+//		
+//	}
 }
 

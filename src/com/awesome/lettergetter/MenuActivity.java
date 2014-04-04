@@ -39,4 +39,12 @@ public class MenuActivity extends Activity {
     		
     	}
     }
+
+	protected void onResume(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+       
 }

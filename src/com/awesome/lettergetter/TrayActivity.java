@@ -105,12 +105,13 @@ public class TrayActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v,
 				int position, long id) {
 				
-				Intent intent = new Intent(TrayActivity.this, LetterGetterActivity.class);
-				intent.putExtra("Ans", "A");
-				intent.putExtra("id", button_id);
+				state.setWordAns("a");
 				
-				startActivity(intent);
-		
+				Intent intent = new Intent(TrayActivity.this, LetterGetterActivity.class);
+//				intent.putExtra("Ans", "A");
+//				intent.putExtra("id", button_id);
+				finish();
+			
 			
 		}
 	});
