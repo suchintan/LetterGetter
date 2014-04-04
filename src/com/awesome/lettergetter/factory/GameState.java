@@ -41,12 +41,14 @@ public class GameState {
 	
 	//Gets the current word needed to be completed
 	public String getCurrentWord(){
+		//return "System design";		
 		return user.getIncompleteWord().getWord();
 	}
 	
 	//Gets the new word to be completed
 	public String getNextWord(DIFFICULTY d){
-		return "design";		
+		user.generateWord(d);
+		return user.getIncompleteWord().getWord();		
 	}
 	
 	//Checks if the user has completed the word
@@ -83,11 +85,11 @@ public class GameState {
 	//Sort by high score then return
 	public List<User> getLeaderboardData(){
 		List<User> leaders = new ArrayList<User>();
-		leaders.add(new User("Seymour Butz", 9001));
-		leaders.add(new User("Ivana Tinkle", 1000));
-		leaders.add(new User("Vladimir Putin", 500));
-		leaders.add(new User("Hazikstan", 2));
-		leaders.add(user);		
+		leaders.add(new User("Hazik", 9001));
+		leaders.add(new User("Sho", 1000));
+		leaders.add(new User("Tom", 500));
+		leaders.add(new User("Suchintan", 2));
+				
 		return leaders;
 	}
 
