@@ -107,10 +107,10 @@ public class TrayActivity extends Activity {
 				
 				state.setWordAns("a");
 				
-				Intent intent = new Intent(TrayActivity.this, LetterGetterActivity.class);
+//				Intent intent = new Intent(TrayActivity.this, LetterGetterActivity.class);
 //				intent.putExtra("Ans", "A");
 //				intent.putExtra("id", button_id);
-				startActivity(intent);
+				//startActivity(intent);
 			
 			
 		}

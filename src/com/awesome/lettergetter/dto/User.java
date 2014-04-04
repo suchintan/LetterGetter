@@ -1,14 +1,14 @@
 package com.awesome.lettergetter.dto;
 
-import com.awesome.lettergetter.IncompleteWord;
 import com.awesome.lettergetter.enums.DIFFICULTY;
+import com.awesome.lettergetter.factory.IncompleteWordFactory;
 
 public class User implements Comparable<User>{
 	private String name;
 	private int points;
 	private int score;
 	private Tray tray;
-	IncompleteWord incompleteWord;
+	private IncompleteWord incompleteWord;
 	private int rank;	
 	
 	public User(String username){
@@ -28,7 +28,7 @@ public class User implements Comparable<User>{
 	
 	
 	public void generateWord(DIFFICULTY d){
-		
+		this.incompleteWord = IncompleteWordFactory.getInstance().generateRandomIncompleteWord(d);
 	}
 	
 	public String getName() {
@@ -80,5 +80,13 @@ public class User implements Comparable<User>{
 
 	public void setTray(Tray tray) {
 		this.tray = tray;
+	}
+
+	public IncompleteWord getIncompleteWord() {
+		return incompleteWord;
+	}
+
+	public void setIncompleteWord(IncompleteWord incompleteWord) {
+		this.incompleteWord = incompleteWord;
 	}
 }

@@ -41,7 +41,8 @@ public class GameState {
 	
 	//Gets the current word needed to be completed
 	public String getCurrentWord(){
-		return "System design";		
+		//return "System design";		
+		return user.getIncompleteWord().getWord();
 	}
 	
 	//Gets the new word to be completed
