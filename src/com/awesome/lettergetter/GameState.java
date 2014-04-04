@@ -8,8 +8,15 @@ import java.util.List;
 import com.awesome.lettergetter.enums.DIFFICULTY;
 import com.awesome.lettergetter.Letters;
 
+
+
+
 public class GameState {
 	User user;
+	
+	static Boolean hasCompletedWord = false;
+	static Boolean hasStartedWord = false;
+	
 	
 	//Gets the current word needed to be completed
 	public String getCurrentWord(){
@@ -22,8 +29,29 @@ public class GameState {
 	}
 	
 	//Checks if the user has completed the word
-	public Boolean hasCompletedWord(){
-		return true;
+	public void setHasCompletedWord(Boolean bool){
+		
+		this.hasCompletedWord = bool;
+		
+	}
+		
+	public static  Boolean getHasCompletedWord(){
+		
+		
+		return hasCompletedWord;
+	}
+	
+	
+	public static void setHasStartedWord(Boolean bool){
+		
+		hasStartedWord = bool;
+		
+	}
+		
+	public static  Boolean getHasStartedWord(){
+		
+		
+		return hasStartedWord;
 	}
 	
 	//Get Leaderboard Data 
@@ -61,6 +89,8 @@ public class GameState {
 
 	//Creates shop items in gamestate and 
 	//returns a list of letters with cost
+
+
 	public List<LetterItem> getShopData(){
 		List<LetterItem> letters = new ArrayList<LetterItem>();
 		letters.add(new LetterItem("A", 2));

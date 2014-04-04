@@ -12,41 +12,24 @@ import android.widget.TableRow;
 
 public class LetterGetterActivity extends MenuActivity {
 	private Button easyBtn, mediumBtn, hardBtn;
-	
-	boolean flag = false;
-	
+		
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    
-        flag = true;
         
-	}
-	
-	@Override
-	
-	protected void onResume(){
-		super.onResume();
-		
-		if (flag == true){
-					
-	        setContentView(R.layout.activity_letter_getter);
-	        
-	        if(gameState.hasCompletedWord()){
-		        //Checks if word is completed then prompts user
-		        //to select difficult for next word
-	        	getNextWord();
-	        }
-	        else{
-		        //Call incomplete word and get length
-	        	populateLetters(1, gameState.getCurrentWord().length());
-	        }
-		
-		}
-		else{
-						
+        setContentView(R.layout.activity_letter_getter);
+          
+        if ((GameState.getHasStartedWord() && GameState.getHasCompletedWord() )== false){   
+       	 
+        	getNextWord();
+       	 }
+       else if((GameState.getHasStartedWord() == true) && (GameState.getHasCompletedWord() == false)){
+       	 
+    	   setDifficultyBtnsVisible(false);
+    	   populateLetters(1, gameState.getCurrentWord().length());
+    	   
+    	   
 			Intent intent = getIntent();
 			final int button_id = intent.getIntExtra("id", 0);
 			final String button_ans = intent.getExtras().getString("Ans");
@@ -55,33 +38,43 @@ public class LetterGetterActivity extends MenuActivity {
 			mButton.setId(button_id);
 			mButton.setText(button_ans);
 						
-		}
-		
-	}
-	
-	
+       	 
+       		}    
+
+ }
+       	
+
 	
     //Event handler for Easy Button
 	View.OnClickListener easyBtnHandler = new View.OnClickListener() {
 		public void onClick(View v) {
+			setDifficultyBtnsVisible(false);
 			populateLetters(1, gameState.getNextWord(DIFFICULTY.EASY).length());
-	    }
+		
+		}
 	};
 	//Event handler for Medium Button
 	View.OnClickListener mediumBtnHandler = new View.OnClickListener() {
 		public void onClick(View v) {
+			setDifficultyBtnsVisible(false);
 			populateLetters(1, gameState.getNextWord(DIFFICULTY.MEDIUM).length());
-	    }
+			 
+		}
 	};
 	//Event handler for Hard Button
 	View.OnClickListener hardBtnHandler = new View.OnClickListener() {
 		public void onClick(View v) {
+			setDifficultyBtnsVisible(false);
 			populateLetters(1, gameState.getNextWord(DIFFICULTY.HARD).length());
-	    }
+			 
+		}
 	};
     
     public void getNextWord(){
-        //Assign Button hooks and handlers
+        
+    	GameState.setHasStartedWord(true);
+    	
+    	//Assign Button hooks and handlers
         easyBtn = (Button) findViewById(R.id.easy_btn);
         mediumBtn = (Button) findViewById(R.id.medium_btn);
         hardBtn = (Button) findViewById(R.id.hard_btn);
@@ -125,14 +118,22 @@ public class LetterGetterActivity extends MenuActivity {
 			}
 		}
 		//Make difficulty buttons invisible
-		setDifficultyBtnsInvisible();
+		//setDifficultyBtnsInvisible();
 	}
     
-    private void setDifficultyBtnsInvisible(){
-		//Make difficulty buttons invisible
-		LinearLayout difficultyBtns = (LinearLayout) findViewById(R.id.difficulty);
-		difficultyBtns.setVisibility(View.INVISIBLE);
-    }
+    private void setDifficultyBtnsVisible(Boolean bool){
+  		//Make difficulty buttons invisible
+  		LinearLayout difficultyBtns = (LinearLayout) findViewById(R.id.difficulty);
+  		
+  		if (bool == true){
+  		
+  		difficultyBtns.setVisibility(View.VISIBLE);
+        }
+  		else{
+   	    difficultyBtns.setVisibility(View.INVISIBLE);	
+  		}
+  		
+  	}
     
     View.OnClickListener getOnClick(final Button button){
     	return new View.OnClickListener(){
