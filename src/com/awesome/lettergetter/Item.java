@@ -4,12 +4,20 @@ import android.graphics.Bitmap;
 
 public class Item {
 	Bitmap image;
-	String title;
+	String quantity;
 	
 	public Item(Bitmap image, String title) {
 		super();
 		this.image = image;
-		this.title = title;
+		this.quantity = title;
+	}
+	
+	
+	public Item(Bitmap image, int i, int j ) {
+		super();
+		this.image = image;
+		this.quantity = Integer.toString(i);
+		
 	}
 	public Bitmap getImage() {
 		return image;
@@ -17,11 +25,11 @@ public class Item {
 	public void setImage(Bitmap image) {
 		this.image = image;
 	}
-	public String getTitle() {
-		return title;
+	public String getQuantity() {
+		return quantity;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setQuantity(String title) {
+		this.quantity = title;
 	}
 	
 

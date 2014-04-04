@@ -35,6 +35,12 @@
          <activity
             android:name="com.awesome.lettergetter.TrayActivity"
             android:label="@string/title_tray_activity" >
+            
+                         <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         
 

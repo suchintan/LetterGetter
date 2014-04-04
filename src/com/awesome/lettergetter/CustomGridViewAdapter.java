@@ -42,7 +42,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 		}
 
 		Item item = data.get(position);
-		holder.txtTitle.setText(item.getTitle());
+		holder.txtTitle.setText(item.getQuantity());
 		holder.imageItem.setImageBitmap(item.getImage());
 		return row;
 
