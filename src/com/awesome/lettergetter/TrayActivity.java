@@ -110,7 +110,7 @@ public class TrayActivity extends Activity {
 //				Intent intent = new Intent(TrayActivity.this, LetterGetterActivity.class);
 //				intent.putExtra("Ans", "A");
 //				intent.putExtra("id", button_id);
-				startActivity(intent);
+//				startActivity(intent);
 			
 			
 		}

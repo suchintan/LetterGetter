@@ -1,38 +1,31 @@
 package com.awesome.lettergetter;
 
 import java.util.ArrayList;
-
-import com.awesome.lettergetter.dto.Item;
-import com.awesome.lettergetter.enums.DIFFICULTY;
-import com.awesome.lettergetter.enums.LETTER;
-import com.awesome.lettergetter.factory.GameState;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.AdapterView.OnItemClickListener;
 
+import com.awesome.lettergetter.dto.Item;
 import com.awesome.lettergetter.enums.DIFFICULTY;
+import com.awesome.lettergetter.enums.LETTER;
 import com.awesome.lettergetter.factory.FileFactory;
 import com.awesome.lettergetter.factory.GameState;
 import com.awesome.lettergetter.trie.Trie;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
 public class LetterGetterActivity extends MenuActivity {
 	private Button easyBtn, mediumBtn, hardBtn;
@@ -127,9 +120,9 @@ public class LetterGetterActivity extends MenuActivity {
         	trie = Trie.getInstance();
     		try {
     			List<String[]> words = new FileFactory(getAssets()).readFromAssets("truncated_words.txt", " ");
-    			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("dictionary.json")));
-    			String json = br.readLine();
-    			new Gson().fromJson(json, new TypeReference<HashMap<String, String>>(){}.getType());
+//    			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("dictionary.json")));
+//    			String json = br.readLine();
+//    			new Gson().fromJson(json, new TypeReference<HashMap<String, String>>(){}.getType());
 				Map<String, String> definitions = new ObjectMapper().readValue(getAssets().open("dictionary.json"), new TypeReference<HashMap<String, String>>(){});
 				
 				for (int c = 0; c < words.size(); c++) {
